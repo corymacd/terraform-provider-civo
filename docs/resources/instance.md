@@ -14,7 +14,7 @@ Provides a Civo instance resource. This can be used to create, modify, and delet
 
 ```terraform
 # Query small instance size
-data "civo_instances_size" "small" {
+data "civo_instances" "small" {
     filter {
         key = "name"
         values = ["g3.small"]
@@ -41,7 +41,7 @@ resource "civo_instance" "foo" {
     hostname = "foo.com"
     tags = ["python", "nginx"]
     notes = "this is a note for the server"
-    size = element(data.civo_instances_size.small.sizes, 0).name
+    size = element(data.civo_instances.small.sizes, 0).name
     disk_image = element(data.civo_disk_image.debian.diskimages, 0).id
 }
 ```
